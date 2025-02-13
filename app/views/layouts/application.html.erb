@@ -13,16 +13,31 @@
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <%
+      stylesheets = Dir["app/assets/stylesheets/**/**"]
+        .map { |path| File.basename(path, ".css") }
+      skip_stylesheets = %w(application.bootstrap.scss)
+    %>
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+
+    <% stylesheets.each do |stylesheet| %>
+      <% next if skip_stylesheets.include? stylesheet %>
+
+      <%= stylesheet_link_tag stylesheet %>
+    <% end %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-xxl bg-white p-0">
+      <%= render partial: "shared/navbar" %>
+      <%= yield %>
+    </div>
+      <%= render partial: "shared/footer" %>
+    <a href="#" class="btn btn-lg square btn-primary back-to-top"><i class="bi bi-arrow-up"></i></a>
   </body>
 </html>

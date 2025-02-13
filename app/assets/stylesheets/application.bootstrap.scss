@@ -1,0 +1,8 @@
+// Override Bootstrap's defaults
+$primary: #00B98E;
+$secondary: #FF6922;
+$light: #EFFDF5;
+$dark: #0E2E50;
+
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
