@@ -1,24 +1,12 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  =>  Template Name    : Makaan - Real Estate HTML Template
 
-Things you may want to cover:
+  =>  Template Link    : https://htmlcodex.com/real-estate-html-template-free
 
-* Ruby version
+  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
 
-* System dependencies
+  =>  Template Author  : HTML Codex
 
-* Configuration
+  =>  Author Website   : https://htmlcodex.com
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  =>  About HTML Codex : HTML Codex is one of the top creators and publishers of Free HTML templates, HTML landing pages, HTML email templates and HTML snippets in the world. Read more at ( https://htmlcodex.com/about-us )
