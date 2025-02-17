@@ -23,7 +23,12 @@
         </div>
         <a href="<%= contact_path %>" class="nav-item nav-link <%= current_page?(contact_path) ? "active" : "" %>">Contact</a>
       </div>
-      <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
+
+      <% if user_signed_in? %>
+        <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-primary px-3 d-none d-lg-flex", "data-turbo-method": :delete %>
+      <% elsif !content_for?(:devise) %>
+        <a href="<%= new_user_session_path %>" class="btn btn-primary px-3 d-none d-lg-flex">Sign in</a>
+      <% end %>
     </div>
   </nav>
 </div>
