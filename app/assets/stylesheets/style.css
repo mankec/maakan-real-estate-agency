@@ -444,3 +444,9 @@ body h6 {
   line-height: 1.2;
   color: #0E2E50;
 }
+
+body button:focus,
+body button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}

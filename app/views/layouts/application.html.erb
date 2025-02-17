@@ -23,7 +23,6 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-
     <% stylesheets.each do |stylesheet| %>
       <% next if skip_stylesheets.include? stylesheet %>
 
@@ -33,6 +32,14 @@
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">
+        <span><%= message %></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+      </div>
+    <% end %>
+
     <div class="container-xxl bg-white p-0">
       <%= render partial: "shared/navbar" %>
       <%= yield %>
