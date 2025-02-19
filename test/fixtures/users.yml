@@ -1,7 +1,6 @@
 DEFAULTS: &DEFAULTS
   email: "test@example.com"
-  password: "pw123"
-  password_confirmation: "pw123"
-
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.zone.now %>
 one:
   *DEFAULTS

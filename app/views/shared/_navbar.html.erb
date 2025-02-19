@@ -14,8 +14,9 @@
         <a href="<%= home_path %>" class="nav-item nav-link <%= current_page?(home_path) ? "active" : "" %>">Home</a>
         <a href="<%= about_path %>" class="nav-item nav-link <%= current_page?(about_path) ? "active" : "" %>">About</a>
         <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle <%= [property_listing_path, property_types_path, our_agents_path].any? { |p| current_page?(p) } ? "active" : "" %>" data-bs-toggle="dropdown">Property</a>
+          <a href="#" class="nav-link dropdown-toggle <%= [property_listing_path, property_types_path, our_agents_path, add_property_path].any? { |p| current_page?(p) } ? "active" : "" %>" data-bs-toggle="dropdown">Property</a>
           <div class="dropdown-menu rounded-0 m-0">
+            <a href="<%= add_property_path %>" class="dropdown-item <%= current_page?(add_property_path) ? "active" : "" %>">Add Property</a>
             <a href="<%= property_listing_path %>" class="dropdown-item <%= current_page?(property_listing_path) ? "active" : "" %>">Property Listing</a>
             <a href="<%= property_types_path %>" class="dropdown-item <%= current_page?(property_types_path) ? "active" : "" %>">Property Types</a>
             <a href="<%= our_agents_path %>" class="dropdown-item <%= current_page?(our_agents_path) ? "active" : "" %>">Our Agents</a>

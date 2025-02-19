@@ -1,9 +1,42 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+user = User.create!(
+  email: "user@example.com",
+  password: "123456",
+  password_confirmation: "123456",
+  confirmed_at: Time.zone.now
+)
+
+5.times do |i|
+  apartment_args = {
+    user: user,
+    address: "Address #{i}",
+    city: "City",
+    zip_code: "11000",
+    size: 100 * i,
+    price: 15000 * i,
+    bathroom_count: i,
+    bedroom_count: i,
+    floor: i
+  }
+  image_file_name = "property-1.jpg"
+
+  apartment_for_sell = Apartment.new(
+    **apartment_args,
+    status: :for_sell
+  )
+  apartment_for_rent = Apartment.new(
+    **apartment_args,
+    status: :for_rent
+  )
+
+  apartment_for_sell.image.attach(
+    io: File.open(Rails.root.join "db/images/#{image_file_name}"),
+    filename: image_file_name
+  )
+  apartment_for_rent.image.attach(
+    io: File.open(Rails.root.join "db/images/#{image_file_name}"),
+    filename: image_file_name
+  )
+
+  apartment_for_sell.save!
+  apartment_for_rent.save!
+end
