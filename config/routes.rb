@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get "/property_types", to: "pages#property_types"
   get "/our-agents", to: "pages#our_agents"
   get "/testimonials", to: "pages#testimonials"
+
+  resources :apartments
 end

@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_17_104130) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_19_105202) do
+  create_table "apartments", force: :cascade do |t|
+    t.string "street_name"
+    t.string "street_number"
+    t.string "city"
+    t.string "zip_code"
+    t.decimal "size"
+    t.decimal "price", precision: 10, scale: 2
+    t.integer "bedroom_count"
+    t.integer "bathroom_count"
+    t.string "floor_level"
+    t.json "amenities", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
