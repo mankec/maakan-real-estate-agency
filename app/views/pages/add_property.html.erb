@@ -1,0 +1,15 @@
+<div class="mt-5">
+  <div class="col-md-4 mb-5">
+    <%= form_with url: update_property_form_path, method: :post do %>
+      <%=
+        select_tag :property_type, options_for_select(
+          [[ "Choose property type...", "", { disabled: true, selected: true } ]] + Constants.property_types.map { |k, v| [ k.capitalize, v ] }
+        ),
+        onchange: "this.form.requestSubmit()",
+        class: "form-select"
+      %>
+    <% end %>
+  </div>
+
+  <div id="property-form"></div>
+</div>
