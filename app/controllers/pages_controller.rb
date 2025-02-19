@@ -22,4 +22,14 @@ class PagesController < ApplicationController
 
   def testimonials
   end
+
+  def bypass_sign_in
+    sign_in User.first
+
+    if current_user.present?
+      redirect_to root_path, notice: "You have been signed in."
+    else
+      redirect_to root_path, alert: "Something went wrong."
+    end
+  end
 end

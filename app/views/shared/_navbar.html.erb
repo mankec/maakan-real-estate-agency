@@ -28,7 +28,14 @@
       <% if user_signed_in? %>
         <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-primary px-3 d-none d-lg-flex", "data-turbo-method": :delete %>
       <% elsif !content_for?(:devise) %>
-        <a href="<%= new_user_session_path %>" class="btn btn-primary px-3 d-none d-lg-flex">Sign in</a>
+        <%=
+          link_to(
+            "Sign in",
+            (Rails.env.development? ? bypass_sign_in_path : new_user_session_path),
+            "data-turbo-method": Rails.env.development? ? :post : :get,
+            class: "btn btn-primary px-3 d-none d-lg-flex"
+          )
+        %>
       <% end %>
     </div>
   </nav>
