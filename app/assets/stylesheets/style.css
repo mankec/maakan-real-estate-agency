@@ -266,10 +266,6 @@
   transition: .5s;
 }
 
-.property-item:hover img {
-  transform: scale(1.1);
-}
-
 .property-item .border-top {
   border-top: 1px dashed rgba(0, 185, 142, .3) !important;
 }
@@ -449,4 +445,12 @@ body button:focus,
 body button:active {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.icon-md {
+  font-size: 32px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

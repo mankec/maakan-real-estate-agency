@@ -14,6 +14,9 @@ class PagesController < ApplicationController
   def property_types
   end
 
+  def add_property
+  end
+
   def our_agents
   end
 
