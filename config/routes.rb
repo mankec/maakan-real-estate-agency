@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/our-agents", to: "pages#our_agents"
   get "/testimonials", to: "pages#testimonials"
   post "/create", to: "pages#create"
+  post "/bypass-sign-in", to: "pages#bypass_sign_in", as: :bypass_sign_in
 
   resources :pages
   resources :apartments
