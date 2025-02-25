@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_19_105202) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_20_160217) do
   create_table "apartments", force: :cascade do |t|
     t.string "street_name"
     t.string "street_number"
-    t.string "city"
-    t.string "zip_code"
-    t.decimal "size"
-    t.decimal "price", precision: 10, scale: 2
-    t.integer "bedroom_count"
-    t.integer "bathroom_count"
-    t.string "floor_level"
+    t.string "city", null: false
+    t.string "zip_code", null: false
+    t.decimal "size", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.integer "bedroom_count", default: 1, null: false
+    t.integer "bathroom_count", default: 1, null: false
+    t.string "floor", null: false
     t.json "amenities", default: []
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
