@@ -24,7 +24,7 @@
     <div class="tab-content">
       <div id="tab-1" class="tab-pane fade show p-0 active">
         <div class="row g-4">
-          <% 8.times do %>
+          <% @apartments.each do |apartment| %>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
               <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden">
@@ -49,8 +49,9 @@
               </div>
             </div>
           <% end %>
-          <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-            <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+
+          <div class="col-12 text-center wow fadeInUp mt-5" data-wow-delay="0.1s">
+            <%= paginate @apartments, outer_window: 1 %>
           </div>
         </div>
       </div>
