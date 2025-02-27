@@ -3,7 +3,7 @@ class ApartmentsController < ApplicationController
   before_action :authenticate_user!, except: %i[ index ]
 
   def index
-    @apartments = Apartment.all
+    @apartments = Apartment.order(:created_at).page(params[:page]).per(Constants.pagination[:properties_per_page])
   end
 
   def new
