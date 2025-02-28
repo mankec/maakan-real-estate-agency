@@ -1,0 +1,63 @@
+<div class="mt-5">
+  <%= form_with model: @villa, builder: BootstrapFormBuilder, local: true, html: { "data-turbo": false } do |f| %>
+    <div class="w-25 row g-3">
+      <div class="col-12">
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </div>
+      <div class="col-md-8">
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :zip_code %>
+        <%= f.text_field :zip_code %>
+      </div>
+      <div class="col-md-6">
+        <%= f.label :size %>
+        <%= f.text_field :size %>
+      </div>
+      <div class="col-md-6">
+        <%= f.label :price %>
+        <%= f.text_field :price %>
+      </div>
+      <div class="d-flex gap-5">
+        <div class="col-md-2">
+          <%= f.label :bathroom_count, "Bathrooms" %>
+          <%= f.text_field :bathroom_count %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :bedroom_count, "Bedrooms" %>
+          <%= f.text_field :bedroom_count %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :status %>
+        <%= f.select :status, Villa.statuses.keys.map { |k| [ k.titleize, k ] }, {}, { class: "form-control" } %>
+      </div>
+
+      <%= f.file_field :image %>
+
+      <div class="col-12" data-controller="append">
+        <span>Amenities:</span>
+        <div class="d-flex align-items-center" data-append-target="input">
+          <%= text_field_tag "villa[amenities][]", @villa.amenities.first, class: "form-control"%>
+          <i class="bi bi-plus icon-md cursor-pointer" data-action="click->append#appendOptionalInput"></i>
+        </div>
+
+        <% if @villa.amenities.present? %>
+          <% @villa.amenities.slice(1..).each do |amenity| %>
+            <div class="d-flex align-items-center" data-controller="remove">
+              <%= text_field_tag "villa[amenities][]", amenity, class: "form-control"%>
+              <i class="bi bi-x icon-md cursor-pointer" data-action="click->remove#removeElement"></i>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%= f.submit "Submit", class: "col-md-8" %>
+    </div>
+  <% end %>
+</div>

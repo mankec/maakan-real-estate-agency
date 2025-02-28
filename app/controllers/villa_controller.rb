@@ -1,0 +1,2 @@
+class VillaController < ApplicationController
+end

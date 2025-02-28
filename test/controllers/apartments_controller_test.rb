@@ -5,7 +5,7 @@ class ApartmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @apartment = apartments :one
 
-    sign_in users(:one)
+    sign_in(users :one)
   end
   test "create apartment" do
     params = {

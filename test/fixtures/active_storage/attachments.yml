@@ -1,4 +1,9 @@
-one_image:
+apartment_image:
   name: image
   record: one (Apartment)
-  blob: one_image_blob
+  blob: image_blob
+
+villa_image:
+  name: image
+  record: one(Villa)
+  blob: image_blob
