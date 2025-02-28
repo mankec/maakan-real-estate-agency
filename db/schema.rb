@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_25_173202) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_27_163834) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -72,7 +72,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_173202) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "villas", force: :cascade do |t|
+    t.string "address", null: false
+    t.string "city", null: false
+    t.string "zip_code", null: false
+    t.decimal "size", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.integer "status", null: false
+    t.integer "bedroom_count", default: 1, null: false
+    t.integer "bathroom_count", default: 1, null: false
+    t.json "amenities", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_villas_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "apartments", "users"
+  add_foreign_key "villas", "users"
 end

@@ -5,7 +5,7 @@ class ApartmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @apartment = apartments :one
 
-    sign_in users(:one)
+    sign_in(users :one)
   end
   test "create apartment" do
     params = {
@@ -39,8 +39,9 @@ class ApartmentsControllerTest < ActionDispatch::IntegrationTest
         amenities: [ "Gym", "" ]
       }
     }
-    @apartment.reload
     assert_redirected_to @apartment
+
+    @apartment.reload
     assert_equal @apartment.amenities, [ "Gym" ]
   end
 end

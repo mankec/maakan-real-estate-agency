@@ -1,7 +1,8 @@
 class Constants
   def self.property_types
     {
-      apartment: :apartment
+      apartment: :apartment,
+      villa: :villa
     }
   end
 
