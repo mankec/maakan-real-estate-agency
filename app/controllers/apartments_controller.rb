@@ -1,6 +1,6 @@
 class ApartmentsController < ApplicationController
-  before_action :set_apartment, only: %i[ show edit update ]
   before_action :authenticate_user!, except: %i[ index ]
+  before_action :set_apartment, only: %i[ show edit update ]
 
   def index
     @apartments = Apartment.order(:created_at).page(params[:page]).per(Constants.pagination[:properties_per_page])
@@ -47,9 +47,13 @@ class ApartmentsController < ApplicationController
     params
       .expect(
         apartment: [
-          :address, :city, :zip_code, :size, :price, :bathroom_count, :bedroom_count, :floor, :image, :status, amenities: [] ]
-        )
-      .merge! user: current_user
+          *Apartment::REQUIRED_FIELDS,
+          amenities: []
+        ]
+      )
+      .merge(
+        user: current_user
+      )
   end
 
   def set_apartment

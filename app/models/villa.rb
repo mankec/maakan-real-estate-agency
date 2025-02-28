@@ -1,17 +1,12 @@
-class Apartment < ApplicationRecord
+class Villa < ApplicationRecord
   REQUIRED_FIELDS = %i[
-    address city zip_code size price bedroom_count bathroom_count floor image status
+    address city zip_code size price bedroom_count bathroom_count image status
   ].freeze
 
-  enum :status, %i[ for_sell for_rent ], prefix: "apartment"
+  enum :status, %i[ for_sell for_rent ], prefix: "villa"
 
   has_one_attached :image
   belongs_to :user
-
-  # TODO See if this can be implemented
-  # has_one_attached :video do |attachable|
-  #   attachable.variant :thumb, resize_to_limit: [100, 100]
-  # end
 
   REQUIRED_FIELDS.each do |field|
     validates field, presence: true

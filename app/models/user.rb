@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :apartments
+  has_many :villas
 end
