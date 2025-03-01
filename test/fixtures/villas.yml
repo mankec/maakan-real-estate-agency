@@ -1,0 +1,13 @@
+DEFAULTS: &DEFAULTS
+  address: "Villa Address 1"
+  city: "Delhi"
+  zip_code: "10000"
+  size: 1000
+  price: 100_000
+  bathroom_count: 1
+  bedroom_count: 1
+  status: "for_sell"
+  user: one
+
+one:
+  *DEFAULTS
