@@ -1,12 +1,11 @@
 class Apartment < ApplicationRecord
-  REQUIRED_FIELDS = %i[
-    address city zip_code size price bedroom_count bathroom_count floor image status
+  include Propertiable
+
+  REQUIRED_FIELDS = [
+    *Propertiable::REQUIRED_FIELDS, :bedroom_count, :bathroom_count, :floor
   ].freeze
 
-  enum :status, %i[ for_sell for_rent ], prefix: "apartment"
-
   has_one_attached :image
-  belongs_to :user
 
   # TODO See if this can be implemented
   # has_one_attached :video do |attachable|

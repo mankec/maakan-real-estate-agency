@@ -1,12 +1,11 @@
 class Villa < ApplicationRecord
-  REQUIRED_FIELDS = %i[
-    address city zip_code size price bedroom_count bathroom_count image status
+  include Propertiable
+
+  REQUIRED_FIELDS = [
+    *Propertiable::REQUIRED_FIELDS, :bedroom_count, :bathroom_count
   ].freeze
 
-  enum :status, %i[ for_sell for_rent ], prefix: "villa"
-
   has_one_attached :image
-  belongs_to :user
 
   REQUIRED_FIELDS.each do |field|
     validates field, presence: true
