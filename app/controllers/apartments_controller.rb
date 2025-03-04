@@ -28,8 +28,6 @@ class ApartmentsController < ApplicationController
   end
 
   def update
-    @apartment.attach(apartment_params[:image]) if apartment_params[:image].present?
-
     if @apartment.update apartment_params
       # TODO Refactor this
       @apartment.update! amenities: @apartment.amenities.reject(&:blank?)
