@@ -1,7 +1,7 @@
 class Apartment < ApplicationRecord
   include Propertiable
-  include Imageable
   include HasArrayFields
+  include HasAttachedImage
 
   REQUIRED_FIELDS = [
     *Propertiable::REQUIRED_FIELDS,

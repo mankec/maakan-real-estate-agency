@@ -1,4 +1,4 @@
-module Imageable
+module HasAttachedImage
   extend ActiveSupport::Concern
 
   included do
