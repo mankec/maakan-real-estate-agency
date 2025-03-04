@@ -29,9 +29,6 @@ class ApartmentsController < ApplicationController
 
   def update
     if @apartment.update apartment_params
-      # TODO Refactor this
-      @apartment.update! amenities: @apartment.amenities.reject(&:blank?)
-
       redirect_to @apartment, notice: "Apartment has been updated."
     else
       flash.now[:alert] = "#{@apartment.errors.full_messages.first}."
