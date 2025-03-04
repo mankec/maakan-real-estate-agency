@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ImageableTest < ActiveSupport::TestCase
+class HasAttachedImageTest < ActiveSupport::TestCase
   setup do
     @property = villas :one
   end

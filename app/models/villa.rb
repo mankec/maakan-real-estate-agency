@@ -1,7 +1,7 @@
 class Villa < ApplicationRecord
   include Propertiable
-  include Imageable
   include HasArrayFields
+  include HasAttachedImage
 
   REQUIRED_FIELDS = [
     *Propertiable::REQUIRED_FIELDS, :bedroom_count, :bathroom_count
