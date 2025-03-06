@@ -17,24 +17,6 @@ user = User.create!(
     size: 100 * i,
     price: 15000 * i
   }
-
-  property_apartment_for_sell = Property.create!(
-    **property_args,
-    status: :for_sell
-  )
-  property_apartment_for_rent = Property.create!(
-    **property_args,
-    status: :for_rent
-  )
-  property_villa_for_sell = Property.create!(
-    **property_args,
-    status: :for_sell
-  )
-  property_villa_for_rent = Property.create!(
-    **property_args,
-    status: :for_rent
-  )
-
   apartment_args = {
     bathroom_count: i,
     bedroom_count: i,
@@ -45,37 +27,51 @@ user = User.create!(
     bedroom_count: i
   }
 
-  apartment_for_sell = Apartment.create!(
+  property_apartment_for_sell = Property.new(
+    **property_args,
+    status: :for_sell,
+    property_type: :apartment
+  )
+  property_apartment_for_rent = Property.new(
+    **property_args,
+    status: :for_rent,
+    property_type: :apartment
+  )
+  property_villa_for_sell = Property.new(
+    **property_args,
+    status: :for_sell,
+    property_type: :villa
+  )
+  property_villa_for_rent = Property.new(
+    **property_args,
+    status: :for_rent,
+    property_type: :villa
+  )
+
+  property_apartment_for_sell.attach_image
+  property_apartment_for_rent.attach_image
+  property_villa_for_sell.attach_image
+  property_villa_for_rent.attach_image
+
+  property_apartment_for_sell.save!
+  property_apartment_for_rent.save!
+  property_villa_for_sell.save!
+  property_villa_for_rent.save!
+
+  Apartment.create!(
     property: property_apartment_for_sell,
     **apartment_args
   )
-  apartment_for_rent = Apartment.create!(
+  Apartment.create!(
     property: property_apartment_for_rent,
     **apartment_args
   )
-  villa_for_sell = Villa.create!(
+  Villa.create!(
     property: property_villa_for_sell,
     **villa_args
   )
-  villa_for_rent = Villa.create!(
+  Villa.create!(
     property: property_villa_for_rent,
     **villa_args
-  )
-
-  apartment_for_sell.property.image.attach(
-    io: File.open(Rails.root.join "db/images/#{image_file_name}"),
-    filename: image_file_name
-  )
-  apartment_for_rent.property.image.attach(
-    io: File.open(Rails.root.join "db/images/#{image_file_name}"),
-    filename: image_file_name
-  )
-  villa_for_sell.property.image.attach(
-    io: File.open(Rails.root.join "db/images/#{image_file_name}"),
-    filename: image_file_name
-  )
-  villa_for_rent.property.image.attach(
-    io: File.open(Rails.root.join "db/images/#{image_file_name}"),
-    filename: image_file_name
   )
 end

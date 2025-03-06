@@ -5,6 +5,7 @@ DEFAULTS: &DEFAULTS
   user: one
 
 property_apartment:
+  property_type: "apartment"
   region: "Property Apartment Region"
   city: "Property Apartment City"
   address: "Property Apartment Address"
@@ -12,6 +13,7 @@ property_apartment:
   <<: *DEFAULTS
 
 property_villa:
+  property_type: "villa"
   region: "Property Villa Region"
   city: "Property Villa City"
   address: "Property Villa Address"

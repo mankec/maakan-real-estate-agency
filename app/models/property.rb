@@ -13,7 +13,7 @@ class Property < ApplicationRecord
 
   enum :status, %i[ for_sell for_rent ]
 
-  REQUIRED_FIELDS.each do |field|
+  (REQUIRED_FIELDS + [ :property_type ]).each do |field|
     validates field, presence: true
   end
 end
