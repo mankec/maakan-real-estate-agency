@@ -62,6 +62,7 @@ class ApartmentsController < ApplicationController
         amenities: []
       ]
     ).merge(
+      property_type: :apartment,
       user: current_user
     )
   end

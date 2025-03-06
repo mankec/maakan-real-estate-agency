@@ -1,16 +1,10 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: %i[ add_property ]
 
-  def index
-  end
-
   def about
   end
 
   def contact
-  end
-
-  def property_listing
   end
 
   def property_types
@@ -33,5 +27,12 @@ class PagesController < ApplicationController
     else
       redirect_to root_path, alert: "Something went wrong."
     end
+  end
+
+  def search_property
+    redirect_to properties_path(
+      region: params[:region],
+      property_type: params[:property_type]
+    )
   end
 end

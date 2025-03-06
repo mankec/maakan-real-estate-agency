@@ -68,7 +68,8 @@ class VillasController < ApplicationController
         amenities: []
       ]
     ).merge(
-      user: current_user
+      user: current_user,
+      property_type: :villa
     )
   end
 
