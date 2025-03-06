@@ -10,6 +10,13 @@ module HasAttachedImage
 
     validate :image_extension
 
+    def attach_image(image_filename = "property-1.jpg")
+      image.attach(
+        io: File.open(Rails.root.join "test/fixtures/files/#{image_filename}"),
+        filename: image_filename
+      )
+    end
+
     private
 
     def image_extension

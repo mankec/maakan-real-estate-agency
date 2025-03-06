@@ -6,25 +6,17 @@ class HasAttachedImageTest < ActiveSupport::TestCase
   end
 
   test "should attach new image" do
-    image_file_name = "property-1.jpg"
-    new_image_file_name = "property-2.jpg"
+    image_filename = "property-1.jpg"
+    new_image_filename = "property-2.jpg"
 
-    assert_equal @property.image.filename.to_s, image_file_name
+    assert_equal @property.image.filename.to_s, image_filename
 
-    @property.image.attach(
-      io: File.open(Rails.root.join "test/fixtures/files/#{new_image_file_name}"),
-      filename: new_image_file_name
-    )
-    assert_equal @property.image.filename.to_s, new_image_file_name
+    @property.attach_image(new_image_filename)
+    assert_equal @property.image.filename.to_s, new_image_filename
   end
 
   test "should disallow wrong image extension" do
-    image_file_name = "invalid_image_file.pdf"
-
-    @property.image.attach(
-      io: File.open(Rails.root.join "test/fixtures/files/#{image_file_name}"),
-      filename: image_file_name
-    )
+    @property.attach_image("invalid_image_file.pdf")
     assert_equal(
       @property.errors.full_messages.first,
       "Please use .jpg or .png as file extension."

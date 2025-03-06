@@ -1,16 +1,10 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: %i[ add_property ]
 
-  def index
-  end
-
   def about
   end
 
   def contact
-  end
-
-  def property_listing
   end
 
   def property_types
