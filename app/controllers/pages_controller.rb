@@ -34,4 +34,8 @@ class PagesController < ApplicationController
       redirect_to root_path, alert: "Something went wrong."
     end
   end
+
+  def search
+    Search.new(*params.values_at(:query, :property_type)).perform
+  end
 end
