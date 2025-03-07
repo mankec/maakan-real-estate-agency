@@ -1,0 +1,50 @@
+<div class="col-md-6">
+  <%= label_tag "property[region]", "Region", class: "form-label" %>
+  <%= text_field_tag "property[region]", property&.region, class: "form-control" %>
+</div>
+<div class="col-md-6">
+  <%= label_tag "property[city]", "City", class: "form-label" %>
+  <%= text_field_tag "property[city]", property&.city, class: "form-control" %>
+</div>
+
+<div class="col-md-8">
+  <%= label_tag "property[address]", "Address", class: "form-label" %>
+  <%= text_field_tag "property[address]", property&.address, class: "form-control" %>
+</div>
+<div class="col-md-4">
+  <%= label_tag "property[zip_code]", "Zip code", class: "form-label" %>
+  <%= text_field_tag "property[zip_code]", property&.zip_code, class: "form-control" %>
+</div>
+
+<div class="col-md-4">
+  <%= label_tag "property[size]", "Size", class: "form-label" %>
+  <%= text_field_tag "property[size]", property&.size, class: "form-control" %>
+</div>
+<div class="col-md-4">
+  <%= label_tag "property[price]", "Price", class: "form-label" %>
+  <%= text_field_tag "property[price]", property&.price, class: "form-control" %>
+</div>
+
+<div class="form-group col-md-4">
+  <%= label_tag "property[status]", "Status", class: "form-label" %>
+  <%= select_tag "property[status]", options_for_select(Property.statuses.keys.map { |k| [ k.titleize, k ] }), { class: "form-control" } %>
+</div>
+
+<div class="col-12" data-controller="append">
+  <span>Amenities:</span>
+  <div class="d-flex align-items-center" data-append-target="input">
+    <%= text_field_tag "property[amenities][]", property&.amenities&.first, class: "form-control"%>
+    <i class="bi bi-plus icon-md cursor-pointer" data-action="click->append#appendOptionalInput"></i>
+  </div>
+
+  <% if property&.amenities.present? %>
+    <% property.amenities.slice(1..).each do |amenity| %>
+      <div class="d-flex align-items-center" data-controller="remove">
+        <%= text_field_tag "property[amenities][]", amenity, class: "form-control"%>
+        <i class="bi bi-x icon-md cursor-pointer" data-action="click->remove#removeElement"></i>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= file_field_tag "property[image]" %>

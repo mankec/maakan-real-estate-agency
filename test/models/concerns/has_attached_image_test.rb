@@ -2,7 +2,7 @@ require "test_helper"
 
 class HasAttachedImageTest < ActiveSupport::TestCase
   setup do
-    @property = villas :one
+    @property = properties :property_apartment
   end
 
   test "should attach new image" do

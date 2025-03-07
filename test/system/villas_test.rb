@@ -16,13 +16,14 @@ class VillasTest < ApplicationSystemTestCase
     visit add_property_path
     click_on "Add Villa"
 
+    fill_in "Region", with: "Villa Region"
     fill_in "Address", with: "New Villa Address"
     fill_in "City", with: "Villa City"
     fill_in "Zip code", with: "10000"
     fill_in "Size", with: "1000"
     fill_in "Price", with: "100000"
     attach_file(Rails.root.join("test/fixtures/files/#{image_file_name}")) do
-      find("#villa_image").click
+      find("#property_image").click
     end
     click_on "Submit"
 

@@ -1,10 +1,7 @@
 class Apartment < ApplicationRecord
-  include Propertiable
-  include HasArrayFields
-  include HasAttachedImage
+  belongs_to :property
 
   REQUIRED_FIELDS = [
-    *Propertiable::REQUIRED_FIELDS,
     :bedroom_count, :bathroom_count, :floor
   ].freeze
 
