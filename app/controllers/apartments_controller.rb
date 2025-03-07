@@ -12,11 +12,17 @@ class ApartmentsController < ApplicationController
 
   def create
     @apartment = Apartment.new apartment_params
+    @apartment.property = Property.new property_params
 
-    if @apartment.save
+    if @apartment.property.save && @apartment.save
       redirect_to @apartment, notice: "Apartment has been created."
     else
-      flash.now[:alert] = "#{@apartment.errors.full_messages.first}."
+      if @apartment.property.errors.present?
+        flash.now[:alert] = "#{@apartment.property.errors.full_messages.first}."
+      else
+        flash.now[:alert] = "#{@apartment.errors.full_messages.first}."
+      end
+
       render :new, status: :unprocessable_entity
     end
   end
@@ -28,30 +34,39 @@ class ApartmentsController < ApplicationController
   end
 
   def update
-    if @apartment.update apartment_params
+    @apartment.property.update(property_params) if params[:property].present?
+
+    if @apartment.property.errors.blank? && @apartment.update(apartment_params)
       redirect_to @apartment, notice: "Apartment has been updated."
     else
-      flash.now[:alert] = "#{@apartment.errors.full_messages.first}."
+      if @apartment.property.errors.present?
+        flash.now[:alert] = "#{@apartment.property.errors.full_messages.first}."
+      else
+        flash.now[:alert] = "#{@apartment.errors.full_messages.first}."
+      end
+
       render :new, status: :unprocessable_entity
     end
   end
 
   private
 
-  def apartment_params
-    params
-      .expect(
-        apartment: [
-          *Apartment::REQUIRED_FIELDS,
-          amenities: []
-        ]
-      )
-      .merge(
-        user: current_user
-      )
-  end
-
   def set_apartment
     @apartment = Apartment.find params[:id]
+  end
+
+  def property_params
+    params.expect(
+      property: [
+        *Property::REQUIRED_FIELDS,
+        amenities: []
+      ]
+    ).merge(
+      user: current_user
+    )
+  end
+
+  def apartment_params
+    params.expect(apartment: Apartment::REQUIRED_FIELDS)
   end
 end

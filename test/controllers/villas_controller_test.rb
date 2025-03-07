@@ -23,17 +23,20 @@ class VillasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create villa" do
     params = {
-      villa: {
+      property: {
+        region: "Villa Region",
         address: "New Villa Address",
-        city: "Kolkata",
+        city: "Villa City",
         zip_code: "10000",
         size: 1000,
         price: 100_000,
-        bathroom_count: 1,
-        bedroom_count: 1,
         image: fixture_file_upload("property-1.jpg", "image/jpg"),
         status: :for_sell,
-        amenities: [ "Parking" ]
+        amenities: [ "Pool" ]
+      },
+      villa: {
+        bathroom_count: 1,
+        bedroom_count: 1
       }
     }
 
@@ -56,7 +59,7 @@ class VillasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update villa" do
-    patch villa_path(@villa), params: { villa: { price: 200_000 } }
+    patch villa_path(@villa), params: { villa: { bathroom_count: 3 } }
     assert_redirected_to @villa
   end
 

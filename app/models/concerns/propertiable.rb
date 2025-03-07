@@ -1,13 +1,11 @@
 module Propertiable
   extend ActiveSupport::Concern
 
-  REQUIRED_FIELDS = %i[
-    address city zip_code size price status image
-  ].freeze
-
   included do
-    belongs_to :user
+    def create_property(property_params)
+      property = Property.create! property_params
 
-    enum :status, %i[ for_sell for_rent ], prefix: self.name.downcase
+      property
+    end
   end
 end

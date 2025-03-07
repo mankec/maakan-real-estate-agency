@@ -1,14 +1,8 @@
 DEFAULTS: &DEFAULTS
-  address: "NH 1 Phagwara-Jalandhar HWY"
-  city: "Delhi"
-  zip_code: "10000"
-  size: 1000
-  price: 100_000
   bathroom_count: 1
   bedroom_count: 1
   floor: 5
-  status: "for_sell"
-  user: one
 
 one:
-  *DEFAULTS
+  property: property_apartment
+  <<: *DEFAULTS

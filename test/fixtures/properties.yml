@@ -1,0 +1,19 @@
+DEFAULTS: &DEFAULTS
+  size: 1000
+  price: 100_000
+  status: "for_sell"
+  user: one
+
+property_apartment:
+  region: "Property Apartment Region"
+  city: "Property Apartment City"
+  address: "Property Apartment Address"
+  zip_code: "1"
+  <<: *DEFAULTS
+
+property_villa:
+  region: "Property Villa Region"
+  city: "Property Villa City"
+  address: "Property Villa Address"
+  zip_code: "2"
+  <<: *DEFAULTS
