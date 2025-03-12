@@ -1,14 +1,5 @@
-user = User.create!(
-  email: "user@example.com",
-  password: "123456",
-  password_confirmation: "123456",
-  confirmed_at: Time.zone.now
-)
-
-5.times do |i|
-  image_file_name = "property-1.jpg"
-
-  property_args = {
+def property_args(user = User.first, i)
+  {
     user: user,
     region: "Region #{i}",
     city: "City",
@@ -17,33 +8,76 @@ user = User.create!(
     size: 100 * i,
     price: 15000 * i
   }
-  apartment_args = {
+end
+
+def apartment_args(i)
+  {
     bathroom_count: i,
     bedroom_count: i,
     floor: i
   }
-  villa_args = {
+end
+
+def villa_args(i)
+  {
     bathroom_count: i,
     bedroom_count: i
   }
+end
 
+User.create!(
+  email: "user@example.com",
+  password: "123456",
+  password_confirmation: "123456",
+  confirmed_at: Time.zone.now
+)
+
+3.times do |i|
+  property_apartment_featured = Property.new(
+    **property_args(i),
+    status: :featured,
+    property_type: :apartment
+  )
+  property_villa_featured = Property.new(
+    **property_args(i),
+    status: :featured,
+    property_type: :apartment
+  )
+
+  property_apartment_featured.attach_image
+  property_villa_featured.attach_image
+
+  property_apartment_featured.save!
+  property_villa_featured.save!
+
+  Apartment.create!(
+    property: property_apartment_featured,
+    **apartment_args(i)
+  )
+  Villa.create!(
+    property: property_villa_featured,
+    **villa_args(i)
+  )
+end
+
+5.times do |i|
   property_apartment_for_sell = Property.new(
-    **property_args,
+    **property_args(i),
     status: :for_sell,
     property_type: :apartment
   )
   property_apartment_for_rent = Property.new(
-    **property_args,
+    **property_args(i),
     status: :for_rent,
     property_type: :apartment
   )
   property_villa_for_sell = Property.new(
-    **property_args,
+    **property_args(i),
     status: :for_sell,
     property_type: :villa
   )
   property_villa_for_rent = Property.new(
-    **property_args,
+    **property_args(i),
     status: :for_rent,
     property_type: :villa
   )
@@ -60,18 +94,18 @@ user = User.create!(
 
   Apartment.create!(
     property: property_apartment_for_sell,
-    **apartment_args
+    **apartment_args(i)
   )
   Apartment.create!(
     property: property_apartment_for_rent,
-    **apartment_args
+    **apartment_args(i)
   )
   Villa.create!(
     property: property_villa_for_sell,
-    **villa_args
+    **villa_args(i)
   )
   Villa.create!(
     property: property_villa_for_rent,
-    **villa_args
+    **villa_args(i)
   )
 end

@@ -55,4 +55,16 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     refute_includes response.body, another_villa.property.address
     refute_includes response.body, @apartment.property.address
   end
+
+  test "should show only properties with specific status" do
+    @apartment.property.for_rent!
+
+    get properties_path
+    assert_includes response.body, @villa.property.address
+    refute_includes response.body, @apartment.property.address
+
+    get properties_path(property_status: :for_rent)
+    assert_includes response.body, @apartment.property.address
+    refute_includes response.body, @villa.property.address
+  end
 end
