@@ -2,8 +2,10 @@ class PropertiesController < ApplicationController
   def index
     properties = if params[:property_type].present?
       SearchProperty.new(*params.values_at(:region, :property_type)).perform
+    elsif params[:property_status].present?
+      Property.where status: params[:property_status]
     else
-      Property.all
+      Property.for_sell
     end
 
     @properties = properties

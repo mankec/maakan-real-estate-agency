@@ -11,7 +11,7 @@ class Property < ApplicationRecord
   has_one :apartment
   has_one :villa
 
-  enum :status, %i[ for_sell for_rent ]
+  enum :status, %i[ for_sell for_rent featured ]
 
   (REQUIRED_FIELDS + [ :property_type ]).each do |field|
     validates field, presence: true
