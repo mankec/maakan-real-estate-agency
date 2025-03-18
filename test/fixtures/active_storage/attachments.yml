@@ -7,3 +7,8 @@ property_villa_image:
   name: image
   record: property_villa (Property)
   blob: image_blob
+
+property_townhouse_image:
+  name: image
+  record: property_townhouse (Property)
+  blob: image_blob

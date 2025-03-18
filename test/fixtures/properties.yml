@@ -19,3 +19,11 @@ property_villa:
   address: "Property Villa Address"
   zip_code: "2"
   <<: *DEFAULTS
+
+property_townhouse:
+  property_type: "townhouse"
+  region: "Property Townhouse Region"
+  city: "Property Townhouse City"
+  address: "Property Townhouse Address"
+  zip_code: "3"
+  <<: *DEFAULTS
