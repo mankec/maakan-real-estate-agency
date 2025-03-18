@@ -1,0 +1,24 @@
+<div class="mt-5">
+  <%= form_with model: @townhouse, builder: BootstrapFormBuilder, local: true, multipart: true, html: { "data-turbo": false } do |f| %>
+    <div class="w-25 row g-3">
+      <%= render "properties/form", property: @townhouse.property %>
+
+      <div class="d-flex justify-content-between">
+        <div class="col-md-2">
+          <%= f.label :bathroom_count, "Bathrooms" %>
+          <%= f.text_field :bathroom_count %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :bedroom_count, "Bedrooms" %>
+          <%= f.text_field :bedroom_count %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :floors, "Floors" %>
+          <%= f.text_field :floors %>
+        </div>
+      </div>
+
+      <%= f.submit "Submit", class: "col-md-8" %>
+    </div>
+  <% end %>
+</div>

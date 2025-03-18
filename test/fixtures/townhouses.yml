@@ -1,5 +1,5 @@
 DEFAULTS: &DEFAULTS
-  floor: 5
+  floors: 2
 
 one:
   property: property_apartment

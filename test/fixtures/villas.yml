@@ -1,7 +1,2 @@
-DEFAULTS: &DEFAULTS
-  bathroom_count: 1
-  bedroom_count: 1
-
 one:
   property: property_villa
-  <<: *DEFAULTS

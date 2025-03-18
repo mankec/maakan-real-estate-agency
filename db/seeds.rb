@@ -11,18 +11,7 @@ def property_args(user = User.first, i)
 end
 
 def apartment_args(i)
-  {
-    bathroom_count: i,
-    bedroom_count: i,
-    floor: i
-  }
-end
-
-def villa_args(i)
-  {
-    bathroom_count: i,
-    bedroom_count: i
-  }
+  { floor: i }
 end
 
 User.create!(
@@ -32,7 +21,7 @@ User.create!(
   confirmed_at: Time.zone.now
 )
 
-3.times do |i|
+2.times do |i|
   property_apartment_featured = Property.new(
     **property_args(i),
     status: :featured,
@@ -43,21 +32,26 @@ User.create!(
     status: :featured,
     property_type: :apartment
   )
+  property_townhouse_featured = Property.new(
+    **property_args(i),
+    status: :featured,
+    property_type: :townhouse
+  )
 
   property_apartment_featured.attach_image
   property_villa_featured.attach_image
+  property_townhouse_featured.attach_image
 
   property_apartment_featured.save!
   property_villa_featured.save!
+  property_townhouse_featured.save!
 
   Apartment.create!(
     property: property_apartment_featured,
     **apartment_args(i)
   )
-  Villa.create!(
-    property: property_villa_featured,
-    **villa_args(i)
-  )
+  Villa.create! property: property_villa_featured
+  Townhouse.create! property: property_townhouse_featured
 end
 
 5.times do |i|
@@ -81,16 +75,30 @@ end
     status: :for_rent,
     property_type: :villa
   )
+  property_townhouse_for_sell = Property.new(
+    **property_args(i),
+    status: :for_sell,
+    property_type: :townhouse
+  )
+  property_townhouse_for_rent = Property.new(
+    **property_args(i),
+    status: :for_rent,
+    property_type: :townhouse
+  )
 
   property_apartment_for_sell.attach_image
   property_apartment_for_rent.attach_image
   property_villa_for_sell.attach_image
   property_villa_for_rent.attach_image
+  property_townhouse_for_sell.attach_image
+  property_townhouse_for_rent.attach_image
 
   property_apartment_for_sell.save!
   property_apartment_for_rent.save!
   property_villa_for_sell.save!
   property_villa_for_rent.save!
+  property_townhouse_for_sell.save!
+  property_townhouse_for_rent.save!
 
   Apartment.create!(
     property: property_apartment_for_sell,
@@ -100,12 +108,8 @@ end
     property: property_apartment_for_rent,
     **apartment_args(i)
   )
-  Villa.create!(
-    property: property_villa_for_sell,
-    **villa_args(i)
-  )
-  Villa.create!(
-    property: property_villa_for_rent,
-    **villa_args(i)
-  )
+  Villa.create! property: property_villa_for_sell
+  Villa.create! property: property_villa_for_rent
+  Townhouse.create! property: property_townhouse_for_sell
+  Townhouse.create! property: property_townhouse_for_rent
 end

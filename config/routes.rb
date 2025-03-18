@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   post "/create", to: "pages#create"
   post "/bypass-sign-in", to: "pages#bypass_sign_in", as: :bypass_sign_in
 
-  resources :apartments
-  resources :villas
   resources :properties, only: %i[ index ] do
     collection do
       get "search"
     end
   end
+
+  resources :apartments
+  resources :villas
+  resources :townhouses
 end
