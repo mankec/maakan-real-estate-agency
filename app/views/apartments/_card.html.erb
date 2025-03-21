@@ -1,0 +1,31 @@
+<div class="col-lg-10 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="property-item rounded overflow-hidden position-relative">
+    <% if show_action_buttons %>
+      <div class="position-absolute top-0 end-0 mt-3 mx-3">
+        <%= link_to "Remove", @apartment, class: "btn btn-danger", "data-turbo-method": :delete, "data-turbo-confirm": "Are you sure?" %>
+        <%= link_to "Edit", edit_apartment_path(@apartment), class: "btn btn-primary" %>
+      </div>
+    <% end%>
+    <div class="d-flex">
+      <div class="position-relative overflow-hidden">
+        <img class="img-fluid" src="<%= url_for @apartment.property.image %>" alt="">
+        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell
+        </div>
+        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+          Apartment
+        </div>
+      </div>
+      <div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Address: <%= @apartment.property.address %></li>
+          <li class="list-group-item">Price: $<%= @apartment.property.price.round %></li>
+          <li class="list-group-item">Size: <%= @apartment.property.size.round %> Sqft</li>
+          <li class="list-group-item"><%= @apartment.bedroom_count %> Bed</li>
+          <li class="list-group-item"><%= @apartment.bathroom_count %> Bath</li>
+          <li class="list-group-item"><%= ActiveSupport::Inflector.ordinalize(@apartment.floor) %> Floor</li>
+          <li class="list-group-item">Amenities: <%= @apartment.property.amenities.join(", ") %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
